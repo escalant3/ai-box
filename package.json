@@ -1,0 +1,31 @@
+{
+  "name": "ai-box",
+  "repo": "escalant3/ai-box",
+  "description": "A platform to simulate Artificial Intelligence problems in top of the Box2D engine",
+  "version": "0.0.1",
+  "keywords": [
+    "ai",
+    "box2d",
+    "agents",
+    "box2dweb"
+  ],
+  "author": {
+    "name": "Diego Muñoz Escalante",
+    "email": "escalant3@gmail.com"
+  },
+  "main": "./src/main.js",
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "extend": "~1.2.1",
+    "box2dweb-commonjs": "2.1.0"
+  },
+  "engines": [
+    "node"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine-node": "~1.11.0",
+    "browserify": "~2.35.0",
+    "yuidocjs": "~0.3.46"
+  }
+}
