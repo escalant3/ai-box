@@ -30,7 +30,6 @@ function BaseAgent(world, specs) {
   // Async sensors registry
   this.sensors = {};
 
-
   if (!!specs.sensors) {
     this.initializeSensors(world, specs.sensors);
   }
@@ -57,33 +56,33 @@ BaseAgent.prototype.setSensor = function(sensorName, value) {
  * classes.
  *
  * @method setValues
- * @param {Object} robojsonResponse An object with the values to
+ * @param {Object} values An object with the values to
  * be applied to the actuators
  */
-BaseAgent.prototype.setValues = function(robojsonResponse) {
+BaseAgent.prototype.setValues = function(values) {
   throw 'setValues must be defined by the agent';
 };
 
 
 /**
- * Execute every tic, reads the last actuator values written
+ * Executed every tic, it reads the last actuator values written
  * in the agent and applies them to the related components.
  * All forces, torques, velocity, etc are applied in this call.
  * Each agent works in a different way so this method must
  * be overriden by the child classes.
  *
  * @method setActuators
- * @param {Object} robojsonResponse An object with the values to
+ * @param {Object} values An object with the values to
  * be applied to the actuators
  */
-BaseAgent.prototype.setActuators = function(robojsonResponse) {
+BaseAgent.prototype.setActuators = function(values) {
   throw 'setActuators must be defined by the agent';
 };
 
 
 /**
  * Iterates through all the sensors specified in the agent
- * and initialized them with the constructors provided in
+ * and initializes them with the constructors provided in
  * the `Sensor Toolbox`
  *
  * @method initializeSensors
@@ -92,7 +91,6 @@ BaseAgent.prototype.setActuators = function(robojsonResponse) {
  * specs of the sensors shipped with the agent
  */
 BaseAgent.prototype.initializeSensors = function(world, sensorSpecsArray) {
-
   var self = this;
 
   sensorSpecsArray.forEach(function(sensorSpec) {
@@ -127,6 +125,7 @@ BaseAgent.prototype.update = function() {
   });
 
   // Return if finished
+  // TODO Handling
   if (this.sensors.GOAL) throw new Error("Done!");
 
   // Send status to clients. This function is defined
@@ -144,13 +143,14 @@ BaseAgent.prototype.update = function() {
  * given type with the Brains avaiable in the Toolbox
  *
  * @method connectBrain
- * @param {Options} driverOptions An object with the specification
- * of the brain
+ * @param {Options} driverOptions An object with the
+ * specification of the brain
  *
- *   - A `type` field is mandatory in the `driverOptions` object. It will
- *   be a string identifying one of the Brains in the Toolbox.
- *   - The other fields will depend of the Brain. For instance, a
- *   SocketIO Brain will require the URL of the socker while a
+ *   - A `type` field is mandatory in the `options` object.
+ *   It will be a string identifying one of the Brains in
+ *   the Toolbox.
+ *   - The other fields will depend on the Brain. For instance,
+ *   a SocketIO Brain will require the URL of the socket while a
  *   WebWorker Brain will require the code to be executed by the
  *   worker. Check the Brains section for more information
  */
