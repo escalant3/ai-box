@@ -13,7 +13,7 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 
 
 /**
- * Provides a 4 wheels vehicle with rear traction that uses the
+ * Provides a 4 wheels vehicle with front traction that uses the
  * front wheels for turning. The possible actuators to control
  * this agent are:
  *
@@ -21,7 +21,7 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
  *   - steerSpeed
  *   - steeringAngle
  *
- * @class RearTractionVehicle
+ * @class FrontTractionVehicle
  * @namespace Agent
  * @constructor
  * @param {Object} World A Box2D World
@@ -31,7 +31,7 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
  * data to the agent related with the map, like the initial
  * position and angle
  */
-function RearTractionVehicle(world, carSpecs, carSetup) {
+function FrontTractionVehicle(world, carSpecs, carSetup) {
   var carBody,
       carOptions,
       carDimension,
@@ -64,7 +64,7 @@ function RearTractionVehicle(world, carSpecs, carSetup) {
                       carOptions);
 
 
-  // RearTractionVehicle initialization
+  // FrontTractionVehicle initialization
   carDimensions = new b2Vec2(carSpecs.width, carSpecs.height);
   this.wheels = drawWheels(world, this.body, carDimensions);
   this.joints = createJoints(world, carSpecs, this.body, this.wheels);
@@ -82,8 +82,8 @@ function RearTractionVehicle(world, carSpecs, carSetup) {
   BaseVehicle.call(this, world, carSpecs);
 }
 
-RearTractionVehicle.prototype = Object.create(BaseVehicle.prototype);
-RearTractionVehicle.prototype.constructor = RearTractionVehicle;
+FrontTractionVehicle.prototype = Object.create(BaseVehicle.prototype);
+FrontTractionVehicle.prototype.constructor = FrontTractionVehicle;
 
 
 /**
@@ -92,7 +92,7 @@ RearTractionVehicle.prototype.constructor = RearTractionVehicle;
  * @param {Object} values An object containing the values
  * to be applied to the actuators
  */
-RearTractionVehicle.prototype.setValues = function(values) {
+FrontTractionVehicle.prototype.setValues = function(values) {
   this.gear = values.gear;
   this.engineSpeed = this.gear * this.topEngineSpeed;
   this.steerSpeed = values.steerSpeed;
@@ -107,7 +107,7 @@ RearTractionVehicle.prototype.setValues = function(values) {
  * @method getValues
  * @return {Object} Current values of the actuators
  */
-RearTractionVehicle.prototype.getValues = function() {
+FrontTractionVehicle.prototype.getValues = function() {
   return{
     gear: this.gear,
     engineSpeed: this.engineSpeed,
@@ -123,7 +123,7 @@ RearTractionVehicle.prototype.getValues = function() {
  *
  * @method setActuators
  */
-RearTractionVehicle.prototype.setActuators = function() {
+FrontTractionVehicle.prototype.setActuators = function() {
   var self = this;
 
   // Moving
@@ -147,7 +147,7 @@ RearTractionVehicle.prototype.setActuators = function() {
  *
  * @method destroy
  */
-RearTractionVehicle.prototype.destroy = function() {
+FrontTractionVehicle.prototype.destroy = function() {
   var world = this.body.GetWorld();
   world.DestroyBody(this.wheels.front.left);
   world.DestroyBody(this.wheels.front.right);
@@ -162,7 +162,7 @@ RearTractionVehicle.prototype.destroy = function() {
 
 
 // Exports
-Agents.registerAgent('RearTractionVehicle', RearTractionVehicle);
+Agents.registerAgent('FrontTractionVehicle', FrontTractionVehicle);
 
 
 

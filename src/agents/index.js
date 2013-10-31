@@ -14,5 +14,5 @@ exports.registerAgent = registerAgent;
 
 
 // Load base agents
-require('./rear_traction_vehicle');
+require('./front_traction_vehicle');
 
