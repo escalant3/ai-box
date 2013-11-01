@@ -61,18 +61,18 @@ CircularRobot.prototype.setActuators = function() {
   var direction;
 
   direction = this.leftWheel.GetTransform().R.col2.Copy();
-  direction.Multiply(5);
+  direction.Multiply(this.leftPower);
   this.leftWheel.ApplyForce(direction, this.leftWheel.GetPosition());
 
   direction = this.rightWheel.GetTransform().R.col2.Copy();
-  direction.Multiply(-5);
+  direction.Multiply(this.rightPower);
   this.rightWheel.ApplyForce(direction, this.rightWheel.GetPosition());
 };
 
 
-CircularRobot.prototype.setValues = function() {
-  this.leftPower = values.leftPower;
-  this.rightPower = values.rightPower;
+CircularRobot.prototype.setValues = function(values) {
+  this.leftPower = values.leftPower * this.maxSpeed;
+  this.rightPower = values.rightPower * this.maxSpeed;
 };
 
 
