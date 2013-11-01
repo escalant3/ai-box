@@ -1,6 +1,6 @@
 var _       = require('underscore');
 var Box2D   = require('box2dweb-commonjs').Box2D;
-var Box     = require('./../base/box').Box;
+var Box     = require('./../base/utils').Box;
 var BaseVehicle = require('./base_vehicle').BaseVehicle;
 var constants = require('./../base/constants');
 var Agents = require('./index');

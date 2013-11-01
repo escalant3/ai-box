@@ -5,7 +5,7 @@
 
 var Box2D = require('box2dweb-commonjs').Box2D;
 var _ = require('underscore');
-var Box = require('./box').Box;
+var Box = require('./utils').Box;
 var Sensors = require('./../sensors/main');
 
 // Map Object attributes
