@@ -90,4 +90,20 @@ World.prototype.step = function() {
   this._redrawFunction();
 };
 
+
+/**
+ * Destroy all the bodies contained in a Box2D world
+ * $method destroyBodies
+ */
+World.prototype.destroyBodies = function() {
+  var aux;
+  var body = this._b2World.GetBodyList();
+
+  while (body) {
+    aux = body.GetNext();
+    this._b2World.DestroyBody(body);
+    body = aux;
+  }
+};
+
 exports.World = World;
