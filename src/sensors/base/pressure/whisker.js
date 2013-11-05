@@ -4,10 +4,7 @@
 
 
 var Box2D = require('box2dweb-commonjs').Box2D;
-
-
-// Constants
-var MAP_OBJECT   = 0x0001;
+var constants = require('./../../../base/constants');
 
 // Aliases
 var b2Vec2 = Box2D.Common.Math.b2Vec2;
@@ -60,7 +57,7 @@ function Whisker(agentObject, specs) {
   };
 
   // Static objects only
-  whisker.filter.maskBits = MAP_OBJECT;
+  whisker.filter.maskBits = constants.MAP_OBJECT;
 
   agentObject.body.CreateFixture(whisker);
   return whisker;
