@@ -10,6 +10,12 @@ build:
 docs:
 	@yuidoc -o docs ./src
 
+test:
+	jasmine-node spec/
+
+autotest:
+	jasmine-node spec/ --autotest --watch src/ spec/
+
 clean:
 	@echo rm -rf docs
 	@echo rm -rf build
