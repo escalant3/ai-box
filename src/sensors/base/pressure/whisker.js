@@ -56,6 +56,9 @@ function Whisker(agentObject, specs) {
     }
   };
 
+  // Initial value
+  agentObject.setSensor(sensorId, 0);
+
   // Static objects only
   whisker.filter.maskBits = constants.MAP_OBJECT;
 
