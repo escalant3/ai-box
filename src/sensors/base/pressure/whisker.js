@@ -1,8 +1,3 @@
-////////////////////////////////////////////////////////////////
-// A sensor that sets a variable to 1 on contact and 0 otherwise
-////////////////////////////////////////////////////////////////
-
-
 var Box2D = require('box2dweb-commonjs').Box2D;
 var constants = require('./../../../base/constants');
 
@@ -63,7 +58,6 @@ function Whisker(agentObject, specs) {
   whisker.filter.maskBits = constants.MAP_OBJECT;
 
   agentObject.body.CreateFixture(whisker);
-  return whisker;
 }
 
 exports.Whisker = Whisker;
