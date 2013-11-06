@@ -113,33 +113,5 @@ function CircularBody(world, specs, options) {
 }
 
 
-function createPrismaticWheel(body, specs) {
-  var wheelBody, wheelJoint, world, x, y, width, height, position;
-
-  world = body.GetWorld();
-  position = body.GetPosition();
-  x = position.x + specs.offset_x;
-  y = position.y + specs.offset_y;
-  width = specs.width;
-  height = specs.height;
-
-  wheelBody = new Box(world, x, y, width, height,
-      {'fixtureFilter': constants.CAR_FILTER});
-
-  var jointDef = new Box2D.Dynamics.Joints.b2PrismaticJointDef();
-  jointDef.Initialize(body, wheelBody, wheelBody.GetWorldCenter(),
-                      new Box2D.Common.Math.b2Vec2(1,0));
-  jointDef.enableLimit = true;
-  jointDef.lowerTranslation = jointDef.upperTranslation = 0.0;
-  wheelJoint = world.CreateJoint(jointDef);
-
-  return {
-    body: wheelBody,
-    joint: wheelJoint
-  };
-}
-
-
 exports.Box = Box;
 exports.CircularBody = CircularBody;
-exports.createPrismaticWheel = createPrismaticWheel;

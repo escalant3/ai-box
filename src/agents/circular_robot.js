@@ -1,6 +1,6 @@
 var constants = require('./../base/constants');
 var utils = require('./../base/utils');
-var BaseAgent = require('./base_agent').BaseAgent;
+var BaseVehicle = require('./base_vehicle').BaseVehicle;
 var Agents = require('./index');
 
 
@@ -11,6 +11,7 @@ var Agents = require('./index');
  *
  * @class CircularRobot
  * @namespace Agent
+ * @extends BaseVehicle
  * @constructor
  * @param {Object} World A Box2D World
  * @param {Object} specs An object with the specifications
@@ -41,20 +42,20 @@ function CircularRobot(world, specs, setup) {
   this.body = new utils.CircularBody(world, specs, options);
 
   // Wheels
-  prismaticWheel = utils.createPrismaticWheel(this.body, specs.leftWheel);
+  prismaticWheel = this.createPrismaticWheel(specs.leftWheel);
 
   this.leftWheel = prismaticWheel.body;
   this.leftJoint = prismaticWheel.joint;
 
-  prismaticWheel = utils.createPrismaticWheel(this.body, specs.rightWheel);
+  prismaticWheel = this.createPrismaticWheel(specs.rightWheel);
 
   this.rightWheel = prismaticWheel.body;
   this.rightJoint = prismaticWheel.joint;
 
-  BaseAgent.call(this, world, specs);
+  BaseVehicle.call(this, world, specs);
 }
 
-CircularRobot.prototype = Object.create(BaseAgent.prototype);
+CircularRobot.prototype = Object.create(BaseVehicle.prototype);
 CircularRobot.prototype.constructor = CircularRobot;
 
 CircularRobot.prototype.setActuators = function() {
