@@ -32,9 +32,18 @@ function GoalSensor(world, x, y, radius) {
   bodyDef.position.Set(x, y);
   bodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
 
-  var body = world.CreateBody(bodyDef);
-  body.CreateFixture(circleGoalFixture);
+  this.body = world.CreateBody(bodyDef);
+  this.body.CreateFixture(circleGoalFixture);
 }
+
+
+GoalSensor.prototype.stepFn = function() {
+  var position = this.body.GetPosition();
+  return {
+    goal_x: position.x,
+    goal_y: position.y
+  };
+};
 
 
 exports.GoalSensor = GoalSensor;

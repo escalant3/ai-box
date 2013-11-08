@@ -2,8 +2,9 @@
 
 var Box2D = require('box2dweb-commonjs').Box2D;
 var Sensors = require('./../sensors/main');
-var AIBoxMap = require('./map').Map;
 var Agent = require('./../agents/index');
+var Box = require('./utils').Box;
+
 
 var TIME_STEP = 1.0/60; // 60 Hertzs
 
@@ -11,21 +12,55 @@ var TIME_STEP = 1.0/60; // 60 Hertzs
 function World() {
   var gravity = new Box2D.Common.Math.b2Vec2(0, 0);
   this._b2World = new Box2D.Dynamics.b2World(gravity, true);
-  this._map = null;
 
-  // The `_redrawFunction` is meant to ve overriden by the
+  // The `_redrawFunction` is meant to be overriden by the
   // selected visualization method. It will be called in
   // every step.
   // Not all the simulation enviroments need it
   this._redrawFunction = function() { };
+
+  // The `_syncWorldFunctions` array allows world designers
+  // to provide world sensors that send data to the agents
+  // in every world step. For instance, a simulation in
+  // which the agents have to chase a moving objective,
+  // the location of the objective would be returned here
+  this._syncWorldFunctions = [];
+
   Sensors.setAsyncListeners(this._b2World);
 }
 
 
 // Reads a JSON Map structure and draws the bodies
 // in a AIBox World object
-World.prototype.createMapElements = function(mapStructure) {
-  this._map = new AIBoxMap(this._b2World, mapStructure);
+World.prototype.createMapElements = function(worldSpec) {
+  var worldSensor;
+  var self = this;
+
+  // Destroy the previous map if any
+  this.destroyBodies();
+
+  worldSpec.boxes.forEach(function(box) {
+    new Box(self._b2World,
+            box.x,
+            box.y,
+            box.width,
+            box.height,
+            box.options);
+  });
+
+  // Draw the goal if any
+  if (worldSpec.type === 'POINT_A_TO_POINT_B') {
+    worldSensor = new Sensors.Toolbox['Base.World.Goal'](
+      this._b2World,
+      worldSpec.world_setup.goal_area.x,
+      worldSpec.world_setup.goal_area.y,
+      worldSpec.world_setup.goal_area.radius
+    );
+
+    this._syncWorldFunctions.push(function() {
+      return worldSensor.stepFn();
+    });
+  }
 };
 
 
@@ -77,8 +112,15 @@ World.prototype.setDebugVisualization = function(canvasElement) {
 };
 
 
-// Simulates new World step
+/**
+ * Simulates new World step. If the the world specification
+ * sets any source of information for the agents it will be
+ * sent by this method in every `step`
+ * @method step
+ * @return {Object} World data for the agents
+ */
 World.prototype.step = function() {
+  var worldData = {};
 
   this._b2World.Step(TIME_STEP , 8 , 3);
 
@@ -88,6 +130,13 @@ World.prototype.step = function() {
   this._b2World.ClearForces();
 
   this._redrawFunction();
+
+  // Fetch data from the world to be sent to the agents
+  this._syncWorldFunctions.forEach(function(fn) {
+    worldData = fn();
+  });
+
+  return worldData;
 };
 
 
