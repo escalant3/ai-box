@@ -28,7 +28,7 @@ function CircularRobot(world, specs, setup) {
   var options = {
     linearDamping: 10.0,
     angularDamping: 10.0,
-    fixtureFilter: constants.CAR_FILTER
+    fixtureFilter: constants.AGENT_FILTER
   };
 
   if (!!setup) {

@@ -56,7 +56,7 @@ function FrontTractionVehicle(world, carSpecs, carSetup) {
   carOptions = {
     'linearDamping': 10.0,
     'angularDamping' : 10.0,
-    'fixtureFilter': constants.CAR_FILTER
+    'fixtureFilter': constants.AGENT_FILTER
   };
 
   this.body = new Box(world, carSpecs.x, carSpecs.y,
@@ -189,7 +189,7 @@ function drawWheels(world, body, carDimension) {
         carPosition.y + carDimension.y / 2,
         wheelDim.x,
         wheelDim.y, {
-          'fixtureFilter': constants.CAR_FILTER
+          'fixtureFilter': constants.AGENT_FILTER
         }),
       right: new Box(
          world,
@@ -197,7 +197,7 @@ function drawWheels(world, body, carDimension) {
          carPosition.y + carDimension.y / 2,
          wheelDim.x,
          wheelDim.y, {
-           'fixtureFilter': constants.CAR_FILTER
+           'fixtureFilter': constants.AGENT_FILTER
          })
     },
     rear: {
@@ -207,7 +207,7 @@ function drawWheels(world, body, carDimension) {
         carPosition.y - carDimension.y / 2,
         wheelDim.x,
         wheelDim.y, {
-          'fixtureFilter': constants.CAR_FILTER
+          'fixtureFilter': constants.AGENT_FILTER
         }),
       right: new Box(
         world,
@@ -215,7 +215,7 @@ function drawWheels(world, body, carDimension) {
         carPosition.y - carDimension.y / 2,
         wheelDim.x,
         wheelDim.y, {
-          'fixtureFilter': constants.CAR_FILTER
+          'fixtureFilter': constants.AGENT_FILTER
         })
     }
   };

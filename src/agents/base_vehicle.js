@@ -54,7 +54,7 @@ BaseVehicle.prototype.createPrismaticWheel = function(specs) {
   height = specs.height;
 
   wheelBody = new Box(world, x, y, width, height,
-      {'fixtureFilter': constants.CAR_FILTER});
+      {'fixtureFilter': constants.AGENT_FILTER});
 
   jointDef = new Box2D.Dynamics.Joints.b2PrismaticJointDef();
   jointDef.Initialize(this.body, wheelBody, wheelBody.GetWorldCenter(),

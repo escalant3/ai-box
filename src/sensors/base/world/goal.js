@@ -5,8 +5,10 @@
 // true. Usually this will end the simulation.
 
 var Box2D = require('box2dweb-commonjs').Box2D;
+var constants = require('./../../../base/constants');
 
 function GoalSensor(world, x, y, radius) {
+  // Box2D constants
   var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
   var b2Vec2 = Box2D.Common.Math.b2Vec2;
   var b2FixtureDef = Box2D.Dynamics.b2FixtureDef;
@@ -19,7 +21,7 @@ function GoalSensor(world, x, y, radius) {
   var circleGoalFixture = new b2FixtureDef();
   circleGoalFixture.shape = circleGoalShape;
   circleGoalFixture.isSensor = true;
-  circleGoalFixture.filter.maskBits = 0x0002;
+  circleGoalFixture.filter.maskBits = constants.AGENT_PART;
   circleGoalFixture.userData = {
     onBeginContact: function() {
       world.COMPLETE = true;
