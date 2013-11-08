@@ -77,4 +77,12 @@ CircularRobot.prototype.setValues = function(values) {
 };
 
 
+CircularRobot.prototype.getValues = function() {
+  return {
+    left_power: this.leftPower,
+    right_power: this.rightPower
+  };
+};
+
+
 Agents.registerAgent('CircularRobot', CircularRobot);

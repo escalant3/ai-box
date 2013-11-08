@@ -65,6 +65,15 @@ BaseAgent.prototype.setValues = function(values) {
 
 
 /**
+ * Returns the actuator values for debugging purposes
+ * It should be redefined by by the agent
+ * @method getValues
+ * @return {Object} The actuator values
+ */
+BaseAgent.prototype.getValues = function() { };
+
+
+/**
  * Executed every tic, it reads the last actuator values written
  * in the agent and applies them to the related components.
  * All forces, torques, velocity, etc are applied in this call.
@@ -115,7 +124,12 @@ BaseAgent.prototype.initializeSensors = function(world, sensorSpecsArray) {
  *
  * @method update
  * @param {Object worldData World information
- * @return {Object} The value of the sensors
+ * @return {Object} Debugging information about the simulation:
+ *
+ *   - sensors: Values of the sensor
+ *   - world: Data about the world
+ *   - actuators: The values of the actuators
+ *
  */
 BaseAgent.prototype.update = function(worldData) {
   this.setActuators();
@@ -135,7 +149,11 @@ BaseAgent.prototype.update = function(worldData) {
     this.sendMessageToBrain(this.sensors, worldData);
   }
 
-  return this.sensors;
+  return {
+    sensors: this.sensors,
+    world: worldData,
+    actuators: this.getValues()
+  };
 };
 
 
