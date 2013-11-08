@@ -25,7 +25,7 @@ describe('World', function() {
   it('should be able to add elements to a world', function() {
     var map = {boxes: [{x: 0, y: 0, width: 5, height: 5}]};
     world.createMapElements(map);
-    expect(world._b2World.GetBodyCount()).toBe(2);
+    expect(world._b2World.GetBodyCount()).toBe(1);
   });
 
   it('should be able to delete all the bodies in the world', function() {
