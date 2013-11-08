@@ -30,8 +30,11 @@ function SocketIODriver(agent, options) {
   });
 
   // Function that will be called every tic
-  agent.sendMessageToBrain = function(sensorInformation) {
-    agent.socket.emit('robojson.status', agent.sensors);
+  agent.sendMessageToBrain = function(sensorData, worldData) {
+    agent.socket.emit('robojson.status', {
+      sensors_data: sensorData,
+      world_data: worldData
+    });
   };
 
   // Attach disconnection function

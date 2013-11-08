@@ -30,8 +30,8 @@ function LocalFileDriver(agent, options) {
 
   // this function is excuted in every `step` allowing to
   // send the information in the sensors to the worker
-  agent.sendMessageToBrain = function(sensorInformation) {
-    var result = localFile.driverLogic(sensorInformation);
+  agent.sendMessageToBrain = function(sensorData, worldData) {
+    var result = localFile.driverLogic(sensorData, worldData);
     agent.setValues(result);
   };
 }

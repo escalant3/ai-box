@@ -22,8 +22,11 @@ function WebWorkerDriver(agent, driverOptions) {
 
   // this function is excuted in every `step` allowing to
   // send the information in the sensors to the worker
-  agent.sendMessageToBrain = function(sensorInformation) {
-    worker.postMessage(sensorInformation);
+  agent.sendMessageToBrain = function(sensorData, worldData) {
+    worker.postMessage({
+      sensors_data: sensorData,
+      world_data: worldData
+    });
   };
 
   agent.disconnectDriver = function() {

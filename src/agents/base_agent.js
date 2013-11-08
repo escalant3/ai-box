@@ -114,9 +114,10 @@ BaseAgent.prototype.initializeSensors = function(world, sensorSpecsArray) {
  *  - Send a message with the status to the brain
  *
  * @method update
+ * @param {Object worldData World information
  * @return {Object} The value of the sensors
  */
-BaseAgent.prototype.update = function() {
+BaseAgent.prototype.update = function(worldData) {
   this.setActuators();
 
   // Set synchronous sensors (every tic)
@@ -131,7 +132,7 @@ BaseAgent.prototype.update = function() {
   // Send status to clients. This function is defined
   // by the Brain associated with the agent
   if (!!this.sendMessageToBrain) {
-    this.sendMessageToBrain(this.sensors);
+    this.sendMessageToBrain(this.sensors, worldData);
   }
 
   return this.sensors;
