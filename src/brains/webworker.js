@@ -8,10 +8,16 @@
 
 
 var brainDrivers = require('./index');
+var connectionCode = ['',
+'self.addEventListener(\'message\', function(msg) {',
+'  var result = agentLogic(msg.data.sensors_data, msg.data.world_data);',
+'  self.postMessage(result);',
+'}, false);'].join('\n');
 
 
 function WebWorkerDriver(agent, driverOptions) {
   var agentSourceCode = driverOptions.data;
+  agentSourceCode += connectionCode;
   var blob = new Blob([agentSourceCode], {type: "text/javascript"});
   var worker = new Worker(URL.createObjectURL(blob));
 
