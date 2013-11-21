@@ -13,6 +13,10 @@ function World() {
   var gravity = new Box2D.Common.Math.b2Vec2(0, 0);
   this._b2World = new Box2D.Dynamics.b2World(gravity, true);
 
+  // Agents in the world are registered and it's the world
+  // responsability to manage them
+  this._agents = [];
+
   // The `_redrawFunction` is meant to be overriden by the
   // selected visualization method. It will be called in
   // every step.
@@ -72,6 +76,7 @@ World.prototype.addAgent = function(agentSpecs, agentSetup) {
 
   if (!!agentContructor) {
     agent = new agentContructor(this._b2World, agentSpecs, agentSetup);
+    this._agents.push(agent);
     return agent;
   } else {
     throw 'Unknown agent';
@@ -117,7 +122,7 @@ World.prototype.setDebugVisualization = function(canvasElement) {
  * sets any source of information for the agents it will be
  * sent by this method in every `step`
  * @method step
- * @return {Object} World data for the agents
+ * @return {Object} Agent and World Data
  */
 World.prototype.step = function() {
   var worldData = {};
@@ -134,6 +139,11 @@ World.prototype.step = function() {
   // Fetch data from the world to be sent to the agents
   this._syncWorldFunctions.forEach(function(fn) {
     worldData = fn();
+  });
+
+  // Step the agents present in the world
+  this._agents.forEach(function(agent, id) {
+    worldData[id] = agent.update(worldData);
   });
 
   return worldData;

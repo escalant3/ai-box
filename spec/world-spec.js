@@ -42,5 +42,6 @@ describe('World', function() {
     var agent = world.addAgent(agentSpecs);
     expect(agent).toNotBe(null);
     expect(agent instanceof AgentFoo).toBe(true);
+    expect(world._agents.length).toBe(1);
   });
 });
