@@ -39,7 +39,7 @@ function CircularRobot(world, specs, setup) {
 
 
   // Chassis
-  this.body = new utils.CircularBody(world, specs, options);
+  this.body = utils.createCircularBody(world, specs, options);
 
   // Wheels
   prismaticWheel = this.createPrismaticWheel(specs.leftWheel);

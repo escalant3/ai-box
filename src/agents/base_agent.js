@@ -103,7 +103,7 @@ BaseAgent.prototype.initializeSensors = function(world, sensorSpecsArray) {
   var self = this;
 
   sensorSpecsArray.forEach(function(sensorSpec) {
-    var sensorInitFn = Sensors.Toolbox[sensorSpec.type];
+    var sensorInitFn = Sensors.toolbox[sensorSpec.type];
 
     if (!sensorInitFn) {
       throw new Error(sensorSpec.type + " is not a valid sensor");

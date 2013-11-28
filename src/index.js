@@ -1,6 +1,6 @@
 module.exports.Box2D = require('box2dweb-commonjs').Box2D;
 module.exports.Base = {
-  World: require('./base/world').World,
+  World: require('./base/world'),
   Constants: require('./base/constants')
 };
 

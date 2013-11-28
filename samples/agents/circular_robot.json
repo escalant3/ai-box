@@ -1,50 +1,50 @@
 {
-  name: "Circular agent with 2 wheels and long whiskers",
-  specs: {
-    agent_id: "CircularRobot",
-    x: 1,
-    y: 1,
-    radius: 0.5,
-    maxSpeed: 5,
-    leftWheel: {
-      offset_x: 0.3,
-      offset_y: 0,
-      width: 0.03,
-      height: 0.15
+  "name": "Circular agent with 2 wheels and long whiskers",
+  "specs": {
+    "agent_id": "CircularRobot",
+    "x": 1,
+    "y": 1,
+    "radius": 0.5,
+    "maxSpeed": 5,
+    "leftWheel": {
+      "offset_x": 0.3,
+      "offset_y": 0,
+      "width": 0.03,
+      "height": 0.15
     },
-    rightWheel: {
-      offset_x: -0.3,
-      offset_y: 0,
-      width: 0.03,
-      height: 0.15
+    "rightWheel": {
+      "offset_x": -0.3,
+      "offset_y": 0,
+      "width": 0.03,
+      "height": 0.15
     },
 
-    sensors: [{
-      type: 'Base.Location.GPS'
+    "sensors": [{
+      "type": "Base.Location.GPS"
     },
     {
-      type: 'Base.Location.Compass'
+      "type": "Base.Location.Compass"
     },
     {
-      type: 'Base.Pressure.Whisker',
-      options: {
-        id: 'left_whisker',
-        pos_x: 0.25,
-        pos_y: 0.70,
-        angle: 0.77,
-        width: 0.01,
-        height: 0.3
+      "type": "Base.Pressure.Whisker",
+      "options": {
+        "id": "left_whisker",
+        "pos_x": 0.25,
+        "pos_y": 0.70,
+        "angle": 0.77,
+        "width": 0.01,
+        "height": 0.3
       }
     },
     {
-      type: 'Base.Pressure.Whisker',
-      options: {
-        id: 'right_whisker',
-        pos_x: -0.25,
-        pos_y: 0.70,
-        angle: -0.77,
-        width: 0.01,
-        height: 0.3
+      "type": "Base.Pressure.Whisker",
+      "options": {
+        "id": "right_whisker",
+        "pos_x": -0.25,
+        "pos_y": 0.70,
+        "angle": -0.77,
+        "width": 0.01,
+        "height": 0.3
       }
     }]
   }

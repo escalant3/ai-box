@@ -20,7 +20,8 @@
   "dependencies": {
     "underscore": "~1.5.2",
     "extend": "~1.2.1",
-    "box2dweb-commonjs": "2.1.0"
+    "box2dweb-commonjs": "2.1.0",
+    "optimist": "~0.6.0"
   },
   "engines": [
     "node"
