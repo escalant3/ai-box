@@ -1,5 +1,24 @@
 var Box2D = require('box2dweb-commonjs').Box2D;
 
+var toolbox = {
+  'Base.Location.GPS': require('./base/location/gps'),
+  'Base.Location.Compass': require('./base/location/compass'),
+  'Base.Pressure.Whisker': require('./base/pressure/whisker'),
+  'Base.World.Goal': require('./base/world/goal')
+};
+
+
+/**
+ * The toolbox provides a mechanism to attach user defined
+ * agents easily to ai-box
+ *
+ * This object relates a name in the form of a string with
+ * the Agent constructor
+ */
+module.exports.toolbox = toolbox;
+module.exports.setAsyncListeners = setAsyncListeners;
+
+
 function setAsyncListeners(world) {
   var listener = new Box2D.Dynamics.b2ContactListener();
 
@@ -35,14 +54,4 @@ function setAsyncListeners(world) {
   world.SetContactListener(listener);
 }
 
-
-exports.setAsyncListeners = setAsyncListeners;
-
-// Available sensors must be registered in this object
-exports.Toolbox = {
-  'Base.Location.GPS': require('./base/location/gps').GPS,
-  'Base.Location.Compass': require('./base/location/compass').Compass,
-  'Base.Pressure.Whisker': require('./base/pressure/whisker').Whisker,
-  'Base.World.Goal': require('./base/world/goal').GoalSensor
-};
 

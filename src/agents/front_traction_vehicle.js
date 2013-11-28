@@ -1,9 +1,8 @@
-var _       = require('underscore');
-var Box2D   = require('box2dweb-commonjs').Box2D;
-var Box     = require('./../base/utils').Box;
-var BaseVehicle = require('./base_vehicle').BaseVehicle;
-var constants = require('./../base/constants');
-var Agents = require('./index');
+var Box2D       = require('box2dweb-commonjs').Box2D,
+    baseUtils   = require('./../base/utils'),
+    BaseVehicle = require('./base_vehicle'),
+    constants   = require('./../base/constants'),
+    Agents      = require('./index');
 
 
 // Box2D aliases
@@ -59,7 +58,8 @@ function FrontTractionVehicle(world, carSpecs, carSetup) {
     'fixtureFilter': constants.AGENT_FILTER
   };
 
-  this.body = new Box(world, carSpecs.x, carSpecs.y,
+  this.body = baseUtils.createRectangularBody(
+                      world, carSpecs.x, carSpecs.y,
                       carSpecs.width, carSpecs.height,
                       carOptions);
 
@@ -127,14 +127,14 @@ FrontTractionVehicle.prototype.setActuators = function() {
   var self = this;
 
   // Moving
-  _.each(this.wheels.front, function(wheel) {
+  this.wheels.front.forEach(function(wheel) {
     var direction = wheel.GetTransform().R.col2.Copy();
     direction.Multiply(self.engineSpeed);
     wheel.ApplyForce(direction, wheel.GetPosition());
   });
 
   // Steering
-  _.each(this.joints.front, function(wheelJoint) {
+  this.joints.front.forEach(function(wheelJoint) {
     var angleDiff = self.steeringAngle - wheelJoint.GetJointAngle();
     wheelJoint.SetMotorSpeed(angleDiff * self.steerSpeed);
   });
@@ -162,8 +162,7 @@ FrontTractionVehicle.prototype.destroy = function() {
 
 
 // Exports
-Agents.registerAgent('FrontTractionVehicle', FrontTractionVehicle);
-
+module.exports = FrontTractionVehicle;
 
 
 // TODO Delete this
@@ -183,7 +182,7 @@ function drawWheels(world, body, carDimension) {
 
   wheels = {
     front: {
-      left: new Box(
+      left: baseUtils.createRectangularBody(
         world,
         carPosition.x - carDimension.x,
         carPosition.y + carDimension.y / 2,
@@ -191,7 +190,7 @@ function drawWheels(world, body, carDimension) {
         wheelDim.y, {
           'fixtureFilter': constants.AGENT_FILTER
         }),
-      right: new Box(
+      right: baseUtils.createRectangularBody(
          world,
          carPosition.x + carDimension.x,
          carPosition.y + carDimension.y / 2,
@@ -201,7 +200,7 @@ function drawWheels(world, body, carDimension) {
          })
     },
     rear: {
-      left: new Box(
+      left: baseUtils.createRectangularBody(
         world,
         carPosition.x - carDimension.x,
         carPosition.y - carDimension.y / 2,
@@ -209,7 +208,7 @@ function drawWheels(world, body, carDimension) {
         wheelDim.y, {
           'fixtureFilter': constants.AGENT_FILTER
         }),
-      right: new Box(
+      right: baseUtils.createRectangularBody(
         world,
         carPosition.x + carDimension.x,
         carPosition.y - carDimension.y / 2,

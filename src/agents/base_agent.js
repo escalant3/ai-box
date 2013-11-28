@@ -1,5 +1,5 @@
 var BrainMixins = require('./../brains/index');
-var Sensors = require('./../sensors/main.js');
+var Sensors = require('./../sensors/index');
 
 
 /**
@@ -185,4 +185,4 @@ BaseAgent.prototype.connectBrain = function(driverOptions) {
 };
 
 
-module.exports.BaseAgent = BaseAgent;
+module.exports = BaseAgent;

@@ -1,9 +1,9 @@
 // Manages a box2d world
 
-var Box2D = require('box2dweb-commonjs').Box2D;
-var Sensors = require('./../sensors/main');
-var Agent = require('./../agents/index');
-var Box = require('./utils').Box;
+var Box2D     = require('box2dweb-commonjs').Box2D;
+var Sensors   = require('./../sensors/index');
+var Agents    = require('./../agents/index');
+var baseUtils = require('./utils');
 
 
 var TIME_STEP = 1.0/60; // 60 Hertzs
@@ -43,8 +43,8 @@ World.prototype.createMapElements = function(worldSpec) {
   // Destroy the previous map if any
   this.destroyBodies();
 
-  worldSpec.boxes.forEach(function(box) {
-    new Box(self._b2World,
+  worldSpec.walls.forEach(function(box) {
+    baseUtils.createRectangularBody(self._b2World,
             box.x,
             box.y,
             box.width,
@@ -72,7 +72,7 @@ World.prototype.createMapElements = function(worldSpec) {
 // into the AIBox World object
 World.prototype.addAgent = function(agentSpecs, agentSetup) {
   var agent;
-  var agentContructor = Agent.Toolbox[agentSpecs.agent_id];
+  var agentContructor = Agents.toolbox[agentSpecs.agent_id];
 
   if (!!agentContructor) {
     agent = new agentContructor(this._b2World, agentSpecs, agentSetup);
@@ -165,4 +165,4 @@ World.prototype.destroyBodies = function() {
   }
 };
 
-exports.World = World;
+module.exports = World;

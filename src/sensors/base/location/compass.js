@@ -10,4 +10,4 @@ var constructor = function(agentObject, options) {
     agentObject.syncSensorFunctions.push(setAngle);
 };
 
-exports.Compass = constructor;
+module.exports = constructor;

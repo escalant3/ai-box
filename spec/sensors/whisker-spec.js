@@ -1,6 +1,6 @@
-var World = require('./../../src/base/world').World;
-var Whisker = require('./../../src/sensors/base/pressure/whisker').Whisker;
-var TestAgent = require('./../mocks').TestAgent;
+var World = require('./../../src/base/world');
+var Whisker = require('./../../src/sensors/base/pressure/whisker');
+var TestAgent = require('./../mocks/test-agent');
 
 
 describe('Whisker Sensor', function() {

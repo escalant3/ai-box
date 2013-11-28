@@ -60,5 +60,5 @@ function Whisker(agentObject, specs) {
   agentObject.body.CreateFixture(whisker);
 }
 
-exports.Whisker = Whisker;
+module.exports = Whisker;
 

@@ -1,6 +1,6 @@
 var constants = require('./../base/constants');
 var utils = require('./../base/utils');
-var BaseVehicle = require('./base_vehicle').BaseVehicle;
+var BaseVehicle = require('./base_vehicle');
 var Agents = require('./index');
 
 
@@ -85,4 +85,4 @@ CircularRobot.prototype.getValues = function() {
 };
 
 
-Agents.registerAgent('CircularRobot', CircularRobot);
+module.exports = CircularRobot;

@@ -1,5 +1,4 @@
- //
- // Utilities to draw boxes in a box2d world
+ // Utilities to create bodies in a box2d world
 
 var Box2D = require('box2dweb-commonjs').Box2D;
 var extend = require('extend');
@@ -68,7 +67,7 @@ function getBodyDefinition(options, x, y) {
 }
 
 
-function Box(world, x, y, width, height, options) {
+function createRectangularBody(world, x, y, width, height, options) {
 
   // Casting
   x = parseFloat(x);
@@ -91,7 +90,7 @@ function Box(world, x, y, width, height, options) {
 }
 
 
-function CircularBody(world, specs, options) {
+function createCircularBody(world, specs, options) {
 
   // Casting
   var x = parseFloat(specs.x);
@@ -113,5 +112,5 @@ function CircularBody(world, specs, options) {
 }
 
 
-exports.Box = Box;
-exports.CircularBody = CircularBody;
+exports.createRectangularBody = createRectangularBody;
+exports.createCircularBody = createCircularBody;

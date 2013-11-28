@@ -1,5 +1,5 @@
 var Box2D = require('box2dweb-commonjs').Box2D;
-var BaseAgent = require('./../src/agents/base_agent').BaseAgent;
+var BaseAgent = require('./../../src/agents/base_agent');
 
 
 function TestAgent(world, specs) {
@@ -13,4 +13,4 @@ TestAgent.prototype = Object.create(BaseAgent.prototype);
 TestAgent.prototype.constructor = TestAgent;
 
 
-module.exports.TestAgent = TestAgent;
+module.exports = TestAgent;

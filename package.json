@@ -1,13 +1,16 @@
 {
   "name": "ai-box",
   "repo": "escalant3/ai-box",
-  "description": "A platform to simulate Artificial Intelligence problems in top of the Box2D engine",
+  "description": "A platform to simulate Agent-Based Worlds with Box2D physics",
   "version": "0.0.1",
   "keywords": [
     "ai",
     "box2d",
     "agents",
-    "box2dweb"
+    "box2dweb",
+    "artificial intelligence",
+    "simulation",
+    "robots"
   ],
   "author": {
     "name": "Diego Muñoz Escalante",

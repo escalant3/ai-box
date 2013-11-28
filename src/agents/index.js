@@ -1,20 +1,20 @@
-//
-// TODO Explain how registerAgent works here...
-//
-
-var toolbox = {};
-
-function registerAgent(name, agent) {
-  toolbox[name] = agent;
-}
+var FrontTractionVehicle = require('./front_traction_vehicle');
+var CircularRobot = require('./circular_robot');
 
 
-exports.BaseAgent = require('./base_agent').BaseAgent;
-exports.Toolbox = toolbox;
-exports.registerAgent = registerAgent;
+// Load the built-in agents
+var toolbox = {
+  'CircularRobot': CircularRobot,
+  'FrontTractionVehicle': FrontTractionVehicle
+};
 
 
-// Load base agents
-require('./front_traction_vehicle');
-require('./circular_robot');
+/**
+ * The toolbox provides a mechanism to attach user defined
+ * agents easily to ai-box
+ *
+ * This object relates a name in the form of a string with
+ * the Agent constructor
+ */
+exports.toolbox = toolbox;
 

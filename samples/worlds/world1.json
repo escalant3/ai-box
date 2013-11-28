@@ -1,0 +1,29 @@
+{
+  id: 1,
+  name: "The beginning",
+  description: "Learn to move forward",
+  instructions: "Use leftPower and rightPower with the same positive value to move forward",
+  agents_setup: [{
+    startPosition: {
+      x: 1.5,
+      y: 1
+    }
+  }],
+  structure: {
+    type: 'POINT_A_TO_POINT_B',
+    world_setup: {
+      goal_area: {
+        x: 1.5,
+        y: 15,
+        radius: 0.8
+      }
+    },
+
+    walls: [
+     { x: 0.1, y: 0.1, width:3, height: 0.1, options: { 'type': 'static'}},
+     { x: 0.1, y: 0.1, width: 0.1, height: 25, options: { 'type': 'static' }},
+     { x: 0.1, y: 16, width: 3, height: 0.1, options: { 'type': 'static'}},
+     { x: 3, y: 0.1, width: 0.1, height: 20, options: { 'type': 'static' }}
+    ]
+  }
+}

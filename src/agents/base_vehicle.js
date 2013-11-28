@@ -1,6 +1,6 @@
 var Box2D = require('box2dweb-commonjs').Box2D;
-var BaseAgent = require('./base_agent').BaseAgent;
-var Box = require('./../base/utils').Box;
+var BaseAgent = require('./base_agent');
+var baseUtils = require('./../base/utils');
 var constants = require('./../base/constants');
 
 /**
@@ -53,7 +53,7 @@ BaseVehicle.prototype.createPrismaticWheel = function(specs) {
   width = specs.width;
   height = specs.height;
 
-  wheelBody = new Box(world, x, y, width, height,
+  wheelBody = baseUtils.createRectangularBody(world, x, y, width, height,
       {'fixtureFilter': constants.AGENT_FILTER});
 
   jointDef = new Box2D.Dynamics.Joints.b2PrismaticJointDef();
@@ -70,4 +70,4 @@ BaseVehicle.prototype.createPrismaticWheel = function(specs) {
 };
 
 
-module.exports.BaseVehicle = BaseVehicle;
+module.exports = BaseVehicle;

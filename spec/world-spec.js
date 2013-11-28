@@ -1,6 +1,6 @@
-var World = require('./../src/base/world').World;
 var Box2D = require('box2dweb-commonjs');
-var Agent = require('./../src/agents/index');
+var World = require('./../src/base/world');
+var Agents = require('./../src/agents/index');
 
 
 describe('World', function() {
@@ -23,7 +23,7 @@ describe('World', function() {
   });
 
   it('should be able to add elements to a world', function() {
-    var map = {boxes: [{x: 0, y: 0, width: 5, height: 5}]};
+    var map = {walls: [{x: 0, y: 0, width: 5, height: 5}]};
     world.createMapElements(map);
     expect(world._b2World.GetBodyCount()).toBe(1);
   });
@@ -37,7 +37,7 @@ describe('World', function() {
 
   it('should add a valid agent', function() {
     function AgentFoo() {}
-    Agent.registerAgent('AgentFoo', AgentFoo);
+    Agents.toolbox.AgentFoo = AgentFoo;
     var agentSpecs = {agent_id: 'AgentFoo'};
     var agent = world.addAgent(agentSpecs);
     expect(agent).toNotBe(null);

@@ -11,5 +11,5 @@ var constructor = function(agentObject, options) {
     agentObject.syncSensorFunctions.push(setPosition);
 };
 
-exports.GPS = constructor;
+module.exports = constructor;
 

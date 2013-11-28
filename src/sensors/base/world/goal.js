@@ -1,12 +1,14 @@
-//
-// Places an goal area in the world. Accepts a (x, y)
-// position and a radius. If the agent gets into this
-// area it will set the COMPLETE flag in the world to
-// true. Usually this will end the simulation.
-
 var Box2D = require('box2dweb-commonjs').Box2D;
 var constants = require('./../../../base/constants');
 
+
+/**
+ * @class GoalSensor
+ * Places an goal area in the world. Accepts a (x, y)
+ * position and a radius. If the agent gets into this
+ * area it will set the COMPLETE flag in the world to
+ * true. Usually this will end the simulation.
+ */
 function GoalSensor(world, x, y, radius) {
   // Box2D constants
   var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
@@ -46,5 +48,5 @@ GoalSensor.prototype.stepFn = function() {
 };
 
 
-exports.GoalSensor = GoalSensor;
+module.exports = GoalSensor;
 
