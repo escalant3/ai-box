@@ -33,8 +33,11 @@ function fileError(fileName) {
 }
 
 function startSimulation() {
-  var world = new World(data.w),
-      agent = world.addAgent(data.a.specs);
+  var world = new World(),
+      agent;
+
+  world.createMapElements(data.w.structure);
+  agent = world.addAgent(data.a.specs, data.w.agents_setup[0]);
 
   agent.connectBrain({
     type: "localfile",
@@ -44,7 +47,7 @@ function startSimulation() {
   var interval = setInterval(function() {
     var result = world.step();
     if (world.COMPLETE) { clearInterval(interval); }
-    console.log(result);
+    //console.log(result);
     console.log(world.COMPLETE);
   }, 1000/60);
 }

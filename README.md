@@ -18,13 +18,13 @@ In progress...
 You can have a preview of the API docs by running `make docs` to generate it.
 
 ## Build it for the browser
-Although written for Node.js, you can run this software in your browser. By running
+Although written for Node.js, you can run this software in your browser. Running
 
     make
 
-it will create a aibox-build.js file. Simply include it with:
+it will create a ai-box-browser.js file. Simply include it with:
 
-    <script src="aibox-build.js"></script>
+    <script src="ai-box-browser.js"></script>
 
 This creates an `AIBox` object in your global namespace.
 

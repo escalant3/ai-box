@@ -34,6 +34,7 @@ function World() {
 }
 
 
+// TODO The World constructor should take care of this
 // Reads a JSON Map structure and draws the bodies
 // in a AIBox World object
 World.prototype.createMapElements = function(worldSpec) {
@@ -54,7 +55,7 @@ World.prototype.createMapElements = function(worldSpec) {
 
   // Draw the goal if any
   if (worldSpec.type === 'POINT_A_TO_POINT_B') {
-    worldSensor = new Sensors.Toolbox['Base.World.Goal'](
+    worldSensor = new Sensors.toolbox['Base.World.Goal'](
       this._b2World,
       worldSpec.world_setup.goal_area.x,
       worldSpec.world_setup.goal_area.y,
