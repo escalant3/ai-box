@@ -11,3 +11,5 @@ module.exports.Sensor = require('./sensors/index');
 module.exports.Brain = require('./brains/index');
 module.exports.Agent = require('./agents/index');
 
+module.exports.Visualization = require('./visualization/index');
+

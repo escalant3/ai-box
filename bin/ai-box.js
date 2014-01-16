@@ -46,9 +46,14 @@ function startSimulation() {
 
   var interval = setInterval(function() {
     var result = world.step();
-    if (world.COMPLETE) { clearInterval(interval); }
-    //console.log(result);
-    console.log(world.COMPLETE);
+    if (world.isCompleted()) {
+      clearInterval(interval);
+      process.exit(0);
+    }
+
+    // On screen debugging
+    console.log(result);
+
   }, 1000/60);
 }
 

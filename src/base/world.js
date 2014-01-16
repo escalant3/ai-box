@@ -3,6 +3,7 @@
 var Box2D     = require('box2dweb-commonjs').Box2D;
 var Sensors   = require('./../sensors/index');
 var Agents    = require('./../agents/index');
+var Visual    = require('./../visualization/index');
 var baseUtils = require('./utils');
 
 
@@ -90,31 +91,18 @@ World.prototype.isCompleted = function() {
   return this._b2World.COMPLETE;
 };
 
-// Render a Box2D debug visualization in an HTML5
-// Canvas element
-World.prototype.setDebugVisualization = function(canvasElement) {
-  var scale = 30;
-  var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
-  var ctx = canvasElement.getContext('2d');
 
-  var debugDraw = new b2DebugDraw();
-
-  debugDraw.SetSprite(ctx);
-  debugDraw.SetDrawScale(scale);
-  debugDraw.SetFillAlpha(0.5);
-  debugDraw.SetLineThickness(1.0);
-  debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-
-  this._b2World.SetDebugDraw(debugDraw);
-
-  this._redrawFunction = function() {
-   // If the Box2D debug view is being used a call
-   // to draw it must be done in every iteration
-   // See Game Loop at:
-   // http://www.box2dflash.org/docs/2.1a/updating
-   this._b2World.DrawDebugData();
-  };
-
+/**
+ * Attaches an optional visualization system to the simulation
+ */
+World.prototype.setVisualization = function(type, options) {
+  switch (type) {
+    case 'DebugDraw':
+      Visual.DebugDraw(this, options);
+      break;
+    default:
+      throw 'Invalid visualization';
+  }
 };
 
 

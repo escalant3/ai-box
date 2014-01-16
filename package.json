@@ -16,12 +16,15 @@
     "name": "Diego Muñoz Escalante",
     "email": "escalant3@gmail.com"
   },
-  "main": "./src/main.js",
+  "main": "./src/index.js",
   "dependencies": {
     "underscore": "~1.5.2",
     "extend": "~1.2.1",
     "box2dweb-commonjs": "2.1.0",
-    "optimist": "~0.6.0"
+    "optimist": "~0.6.0",
+    "term-canvas": "0.0.5",
+    "socket.io": "~0.9.16",
+    "connect": "~2.11.2"
   },
   "engines": [
     "node"
