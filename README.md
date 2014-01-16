@@ -8,7 +8,7 @@ A library to simulate agent based worlds with Box2D physics
 - Robots are fun!
 - You don't always have access to robot hardware
 
-## Installation
+## Installation (when ready)
 
     npm install aibox
 
